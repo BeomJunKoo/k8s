@@ -49,4 +49,42 @@ kube-apiserver 동작
 7) woker nodes 에 컨테이너 런타임 엔진에 요청 내용 지시하여 애플리케이션 배포
 8) kubelet 은 kube-apiserver 상태 업데이트하고 etcd 클러스터로 정보 업데이트 최종 수행
 ```
+### kube Controller-Manager
+- 지속적인 감시 (watch Status)  
+
+> Node Monitor Period = 5s 
+
+: kube-apiserver 를 통해 (5초)마다 node-Controller의 하트비트 상태 확인 옵션
+
+> Node Monitor Grace Period = 40s
+
+: 노드가 연결할 수 없는 상태로 표시되기 까지의 상태 (40초) 기다리는 옵션 
+
+> POD Eviction Timeout = 5m 
+
+: 연결할 수 없는 상태를 확인하고 (5분) 후 할당된 POD 제거 옵션 
+
+
+kube Controller-Manager 서비스 설정 경로
+> /etc/systemd/system/kube-controller-manager.service
+
+적용 확인  
+> /etc/kubernets/manifests/kube-controller-manager.yaml
+
+Replication-Controller 
+
+: POD 죽은 경우 POD를 생성합니다.
+
+### Kube-Scheduler
+어떤 POD가 어떤 노드로 보낼지 결정하기 위한 역할
+(실제 POD의 배치는 kubelet이 수행합니다.)
+
+kube-scheduler.service install 
+
+kube-scheduler 서비스 설정 경로
+> /etc/kubernetes/manifests/kube-scheduler.yaml 
+
+### kubelet
+Worker Nodes 에서 Master Node와 유일한 접점 (선장)
+
 
