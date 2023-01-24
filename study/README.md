@@ -87,4 +87,26 @@ kube-scheduler 서비스 설정 경로
 ### kubelet
 Worker Nodes 에서 Master Node와 유일한 접점 (선장)
 
+### kube proxy
+수행 방식 : iptables 규칙을 사용 
+kubernetes cluster 내에서 모든 POD는 다른 모든 POD에 도달 가능합니다. 
+
+활용 내용
+
+- 어플리케이션의 노드 배치
+- 배포된 데이터베이스 응용 프로그램
+
+통신 예시) 
+
+서비스 IP(10.96.12) -> POD IP(10.32.0.14, 10.32.0.15) 
+
+
+## Yaml in Kubernetes
+필수 포함 내용
+- apiVersion: 
+
+: 개체 생성에 사용하는 Kubernetes API 버전 지정 내용
+- kind: 
+- metadata: 
+- spec: 
 
